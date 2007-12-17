@@ -11,7 +11,6 @@ Source:		svn://svn.kitenet.net/joey/trunk/packages/%{name}-%{version}.tar.bz2
 URL:		http://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	X11-devel ImageMagick libapm-devel
 
 %description
