@@ -37,7 +37,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__cp} %name.1x $RPM_BUILD_ROOT/%_mandir/man1/
 
 #menu
-%{__mkdir} -p $RPM_BUILD_ROOT%{_menudir}
+%{__mkdir} -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
