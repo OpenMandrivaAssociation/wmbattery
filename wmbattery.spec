@@ -1,6 +1,6 @@
 %define name	wmbattery
 %define version	2.25
-%define release %mkrel 3
+%define release %mkrel 4
 
 Name: 	 	%{name}
 Summary: 	Battery info docklet for WindowMaker
