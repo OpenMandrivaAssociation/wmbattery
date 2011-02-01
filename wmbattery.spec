@@ -1,6 +1,6 @@
 %define name	wmbattery
 %define version	2.25
-%define release %mkrel 5
+%define release %mkrel 6
 
 Name: 	 	%{name}
 Summary: 	Battery info docklet for WindowMaker
@@ -12,7 +12,11 @@ URL:		http://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	X11-devel imagemagick libapm-devel
+BuildRequires:	libx11-devel
+BuildRequires:	imagemagick
+BuildRequires:	libapm-devel
+BuildRequires:	libxext-devel
+BuildRequires:	libxpm-devel
 
 %description
 wmbattery displays the status of your laptop's battery in a small icon. This
@@ -26,7 +30,7 @@ It works for both ACPI and APM based systems.
 %setup -q
 
 %build
-%__autoconf
+autoconf
 %configure2_5x
 %make
 										
