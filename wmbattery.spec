@@ -1,17 +1,13 @@
-%define name	wmbattery
-%define version	2.25
-%define release %mkrel 6
-
-Name: 	 	%{name}
+Name: 	 	wmbattery
 Summary: 	Battery info docklet for WindowMaker
-Version: 	%{version}
-Release: 	%{release}
+Version: 	2.40
+Release: 	2
 
-Source:		svn://svn.kitenet.net/joey/trunk/packages/%{name}-%{version}.tar.bz2
+Source: 	%{name}-%{version}.tar.xz
 URL:		http://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+
 BuildRequires:	libx11-devel
 BuildRequires:	imagemagick
 BuildRequires:	libapm-devel
@@ -30,20 +26,22 @@ It works for both ACPI and APM based systems.
 %setup -q
 
 %build
+sed -i \
+	-e '/^icondir/s:icons:pixmaps:' \
+	-e '/^USE_HAL/d' \
+	autoconf/makeinfo.in
+
 autoconf
 %configure2_5x
 %make
 										
 %install
-rm -rf $RPM_BUILD_ROOT
-%{__mkdir} -p $RPM_BUILD_ROOT/%_bindir
-%{__mkdir} -p $RPM_BUILD_ROOT/%_mandir/man1
-%{__cp} %name $RPM_BUILD_ROOT/%_bindir/
-%{__cp} %name.1x $RPM_BUILD_ROOT/%_mandir/man1/
+rm -rf %{buildroot}
+%makeinstall_std
 
 #menu
-%{__mkdir} -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+%{__mkdir} -p %{buildroot}%{_datadir}/applications
+cat << EOF > %{buildroot}%{_datadir}/applications/%{name}.desktop
 [Desktop Entry]
 Type=Application
 Exec=%{name}
@@ -54,19 +52,10 @@ Categories=System;Monitor;
 EOF
 
 #icons
-%{__mkdir} -p $RPM_BUILD_ROOT/%_liconsdir
-convert -size 48x48 face.xpm $RPM_BUILD_ROOT/%_liconsdir/%name.png
-%{__mkdir} -p $RPM_BUILD_ROOT/%_iconsdir
-convert -size 32x32 face.xpm $RPM_BUILD_ROOT/%_iconsdir/%name.png
-%{__mkdir} -p $RPM_BUILD_ROOT/%_miconsdir
-convert -size 16x16 face.xpm $RPM_BUILD_ROOT/%_miconsdir/%name.png
-
-# the various states of the applet
-%{__mkdir} -p $RPM_BUILD_ROOT/%_iconsdir/%name
-%{__cp} *xpm $RPM_BUILD_ROOT/%_iconsdir/%name/
+convert -size 48x48 face.xpm %{buildroot}/%{_datadir}/pixmaps/%{name}.png
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post
@@ -82,10 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc TODO README
 %doc %{_mandir}/*/*
-%{_bindir}/%name
-%{_datadir}/applications/mandriva-%name.desktop
-%{_liconsdir}/%name.png
-%{_iconsdir}/%name.png
-%{_miconsdir}/%name.png
-%{_iconsdir}/%name/
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/%{name}/*.xpm
 
