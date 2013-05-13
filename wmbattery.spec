@@ -8,11 +8,11 @@ URL:		http://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
 
-BuildRequires:	libx11-devel
+BuildRequires:	pkgconfig(x11)
 BuildRequires:	imagemagick
 BuildRequires:	libapm-devel
-BuildRequires:	libxext-devel
-BuildRequires:	libxpm-devel
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xpm)
 
 %description
 wmbattery displays the status of your laptop's battery in a small icon. This
