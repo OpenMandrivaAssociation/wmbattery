@@ -1,7 +1,7 @@
 Name: 	 	wmbattery
 Summary: 	Battery info docklet for WindowMaker
 Version: 	2.40
-Release: 	3
+Release: 	4
 
 Source: 	%{name}-%{version}.tar.xz
 URL:		http://kitenet.net/programs/wmbattery/
