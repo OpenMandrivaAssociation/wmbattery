@@ -4,7 +4,7 @@ Version: 	2.40
 Release: 	4
 
 Source: 	%{name}-%{version}.tar.xz
-URL:		http://kitenet.net/programs/wmbattery/
+URL:		https://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
 
