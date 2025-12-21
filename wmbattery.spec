@@ -8,6 +8,11 @@ URL:		https://kitenet.net/programs/wmbattery/
 License:	GPL
 Group:		Graphical desktop/WindowMaker
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	imagemagick
 BuildRequires:	libapm-devel
